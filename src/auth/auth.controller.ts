@@ -1,9 +1,10 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { AuthService } from "./auth.service";
+import { API_ROUTES } from "src/common/routes";
 
 // The @Controller decorator defines a controller class. It tells NestJS that this class will 
 // handle HTTP requests for the specified route ('auth').
-@Controller()
+@Controller(API_ROUTES.AUTH.BASE)
 export class AuthController{
 
     // The constructor is used to inject dependencies into this class. Here, we're injecting 
@@ -15,7 +16,7 @@ export class AuthController{
     // The @Post decorator defines an HTTP POST route. This is the endpoint that will handle 
     // POST requests to /auth/signup. When a POST request is sent to this route, the signup() 
     // method is triggered.
-    @Post('loginuser')
+    @Post(API_ROUTES.AUTH.LOGIN)
     signup(@Body() body: { email: string; password: string }){
         const { email, password } = body;
         return this.authservice.signup(email, password)

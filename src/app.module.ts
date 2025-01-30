@@ -13,7 +13,7 @@ import { UpdateUserModule } from './updateuser/updateuser.module';
 
 
 @Module({
-  imports: [Authentication, DashboardModule, AddUserModule, DeleteUserModule,GetUserModule, UpdateUserModule,ServeStaticModule.forRoot({
+  imports: [Authentication, DashboardModule, AddUserModule, DeleteUserModule, GetUserModule, UpdateUserModule, ServeStaticModule.forRoot({
     rootPath: join(__dirname, '..', 'public/uploads'),
     serveRoot: '/public/uploads',
   })],

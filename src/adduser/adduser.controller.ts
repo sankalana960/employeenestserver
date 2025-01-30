@@ -5,13 +5,14 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { multerConfig } from "src/upload.config";
 import { Express } from 'express';
 import { Multer } from 'multer';
+import { API_ROUTES } from "src/common/routes";
 
-@Controller()
+@Controller(API_ROUTES.USER.BASE)
 export class AddUserController{
 
     constructor(public readonly adduserservice:AddUserService){}
 
-    @Post('userdetails')
+    @Post(API_ROUTES.USER.ADDUSER)
     @UseInterceptors(FileInterceptor('image', multerConfig))
     async userDetails(@Body() body: any, @UploadedFile() file: Multer.File, @Res() res: Response){
         try {

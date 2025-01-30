@@ -3,14 +3,15 @@ import { UpdateUserService } from "./updateuser.service";
 import {Multer} from 'multer'
 import { Gender, Role } from "@prisma/client";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { API_ROUTES } from "src/common/routes";
 
-@Controller()
+@Controller(API_ROUTES.USER.BASE)
 export class UpdateUserController{
     
     constructor(public readonly updateuserservice:UpdateUserService){}
 
     @UseInterceptors(FileInterceptor('image'))
-    @Put("updateuser/:id")
+    @Put(API_ROUTES.USER.UPDATEUSER)
     updateuser(@Param('id') id: string ,@Body() body:{ firstName: string, lastName: string, email: string, gender: Gender, number: string, hobbies: string, role: Role },
     @UploadedFile() file: Multer.File){
         const imagePath = file ? file.filename : null;
